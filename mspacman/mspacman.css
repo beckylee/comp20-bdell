@@ -1,0 +1,14 @@
+body {
+	background-color: #D0F5A9;
+}
+#game_div{
+	text-align: center;
+}
+
+canvas {
+	padding: 10px;
+	margin: 10px;
+	border-width: 40px;
+	border-color: #000000;
+	border-style: solid;
+}
