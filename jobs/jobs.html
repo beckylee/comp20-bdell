@@ -22,6 +22,7 @@ function setup()
 			}
 			catch(ex){
 				request = null;
+				document.write("here");
 			}
 		}
 	}
@@ -38,9 +39,8 @@ function setup()
 
 			if(request.readyState==4 && request.status==200)
 			{
-				var str = request.responseText;
-				
-				document.write(str + "</br>" + str.length + "</br>");
+				var data = request.responseText;
+				var str = JSON.parse(data);
 	
 				for(var i = 0; i<str.length; i++){
 					var comp = document.createElement();
