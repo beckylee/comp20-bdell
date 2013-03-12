@@ -5,32 +5,42 @@
 <head>
 <title>Fecesbook</title>
 <script type="text/javascript">
-	
-function updateStatus(val){
-
-	
-	if(event.keyCode == 13)
+	function init()
 	{
-		var p = new Date();
+		elem = document.getElementById("nav");
+		elem.innerHTML = "<h1>The phrase that pays is Bonkers</h1>";
+	}
+	
+	function reload()
+	{
+			var p = new Date();
 		var d = p.getDate();
 		var y = p.getFullYear();
 		var m = p.getMonth();
 		var h = p.getHours();
 		var mi = p.getMinutes();
 		
-		var space = document.createElement();
-		space.innerHTML= "<br/>";
-		var txtNode=document.createTextNode(m + "/" + d + "/" + y + " " + h + ":" + mi + " - " + val);
-		var status = document.getElementById("status");
-		document.getElementById("status").insertBefore(space, status.childNodes[0]);
-		document.getElementById("status").insertBefore(txtNode, status.childNodes[0]);
+		time = m + "/" + d + "/" + y + " " + h + ":" + mi + " - ";
+		elem = document.getElementById("status");
+		output = "";
+		for (key in localStorage) {
+			output = "<p>" + time +localStorage[key] + "</p>\n" + output;
+		}
+		elem.innerHTML = output;
 		document.getElementById("msg").value = "";
+
 	}
-}
+	
+	function store()
+	{
+		txt = document.getElementById("msg").value;
+		localStorage[new Date().getTime()] = txt;
+		reload();
+	}
 </script>
 </head>
 
-<body>
+<body onload="init()">
 	<h1>Fecesbook</h1>
 	<div id="nav">
 		<ul>
@@ -44,7 +54,7 @@ function updateStatus(val){
 	</div>
 	<h2 id="fullname">Barney Gumble</h2>
 	<p><img src="https://s3.amazonaws.com/tufts-cs-mchow-images/barneymug.gif" alt="profile" /></p>
-	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" onkeypress="updateStatus(this.value)"/></h3>
+	<h3>What are you thinking about? <input type="text" id="msg" name="msg" size="30" onchange="store()"/></h3>
 	<h3>Updates:</h3>
 	<div id="status" name="status">
 
