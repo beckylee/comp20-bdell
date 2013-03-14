@@ -53,29 +53,43 @@ function start_game(){
 	var medlog2 = 150;
 	var medlog3 = 0;
 
+	var smlog = 400;
+	var smlog2 = 230;
+	var smlog3 = 100;
+	
+	var trtl1 = 250;
+	var trtl2 = 220;
+	var trtl3 = 190;
+	var turtle_counter = 0;
+	
+	var prpcar = 50;
+	var prpcar2 = 150;
+	var prpcar3 = 250;
+	
+	var yellow = 90;
+	var yellow2 = 275;
+	var yellow3 = 355;
 	function log(){
 	// Put in big logs
 		background();
-		logs = logs-10;
-		log2 = log2-10;
+		logs = logs+10;
+		log2 = log2+10;
 
 		ctx.drawImage(img, 0, 165, 190, 30, logs, 185, 170, 30);
 		
 		ctx.drawImage(img, 0, 165, 190, 30, log2, 185, 170, 30);
 
-		if(logs < -200){
-			logs = 420;
+		if(logs > 420){
+			logs = -200;
 		}		
 		
-		if(log2 < -200){
-			log2 = 420;
+		if(log2 > 420){
+			log2 = -200;
 		}
-		
-		ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
-	
-		medlog = medlog-5;
-		medlog2 = medlog2-5;
-		medlog3 = medlog3-5;
+			
+		medlog = medlog+5;
+		medlog2 = medlog2+5;
+		medlog3 = medlog3+5;
 		
 		ctx.drawImage(img, 0, 195, 210, 30, medlog, 117, 180, 30);
 
@@ -83,29 +97,141 @@ function start_game(){
 
 		ctx.drawImage(img, 0, 195, 210, 30, medlog3, 117, 180, 30);
 
-		if(medlog < -150){
-			medlog = 420;
+		if(medlog > 420){
+			medlog = -150;
 		}
 		
-		if(medlog2 < -150){
-			medlog2 = 420;
+		if(medlog2 > 420){
+			medlog2 = -150;
 		}
 		
-		if(medlog3<-150){
-			medlog3 = 420;
+		if(medlog3>420){
+			medlog3 = -150;
 		}
 		
-	}
+	
 	
 	// Put in small logs
-//		ctx.drawImage(img, 0, 226, 100, 26, -25, 150, 90, 25);
-//		ctx.drawImage(img, 0, 226, 100, 26, 140, 150, 90, 25);
-//		ctx.drawImage(img, 0, 226, 100, 26, 260, 150, 90, 25);
-//		ctx.drawImage(img, 0, 226, 100, 26, 375, 150, 90, 25);
+	
+		smlog = smlog + 2;
+		smlog2 = smlog2 + 2;
+		smlog3 = smlog3 + 2;
 		
-//		ctx.drawImage(img, 0, 226, 100, 26, 25, 245, 90, 25);
-//		ctx.drawImage(img, 0, 226, 100, 26, 130, 245, 90, 25);
-//		ctx.drawImage(img, 0, 226, 100, 26, 290, 245, 90, 25);
+		ctx.drawImage(img, 0, 226, 100, 26, smlog, 219, 90, 25);
+		ctx.drawImage(img, 0, 226, 100, 26, smlog2, 219, 90, 25);
+		ctx.drawImage(img, 0, 226, 100, 26, smlog3, 219, 90, 25);
+		
+		
+		
+		if(smlog > 420){
+			smlog = -100;
+		}
+		
+		if(smlog2 > 420){
+			smlog2 = -100;
+		}
+		
+		if(smlog3 > 420){
+			smlog3 = -100;
+		}
+	
+	// some turtles
+	
+		trtl1 = trtl1 - 10;
+		trtl2 = trtl2 - 10;
+		trtl3 = trtl3 - 10;	
+		
+		if(turtle_counter== 0){
+		ctx.drawImage(img, 10, 395, 35, 35, trtl1, 247, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl2, 247, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl3, 247, 30, 35);
+		
+//		turtle_counter = 1;
+		}
+		
+		if(turtle_counter == 1){
+		ctx.drawImage(img, 50, 395, 35, 35, trtl1, 247, 30, 35);
+		ctx.drawImage(img, 50, 395, 35, 35, trtl2, 247, 30, 35);
+		ctx.drawImage(img, 50, 395, 35, 35, trtl3, 247, 30, 35);
+		
+		turtle_counter ;
+		}
+
+
+		if(trtl1 < -100){
+			trtl1 = 420;
+		}
+		
+		if(trtl2 < -100){
+			trtl2 = 420;
+		}
+		
+		if(trtl3 < -100){
+			trtl3 = 420;
+		}
+
+	// purple car car
+		prpcar = prpcar - 8;
+		prpcar2 = prpcar2 - 8;
+		prpcar3 = prpcar3 - 8;
+		
+		ctx.drawImage(img, 0, 255, 40, 35, prpcar, 370, 40, 45);		
+		ctx.drawImage(img, 0, 255, 40, 35, prpcar2, 370, 40, 45);		
+		ctx.drawImage(img, 0, 255, 40, 35, prpcar3, 370, 40, 45);		
+
+		if(prpcar < -100){
+			prpcar = 420;
+		}
+		
+		if(prpcar2 < -100){
+			prpcar2 = 420;
+		}
+		
+		if(prpcar3 < -100){
+			prpcar3 = 420;
+		}		
+
+	// white and red car
+		ctx.drawImage(img, 40, 252, 40, 45, smlog, 345, 40, 45);
+		ctx.drawImage(img, 40, 252, 40, 45, smlog2, 345, 40, 45);
+		ctx.drawImage(img, 40, 252, 40, 45, smlog3, 345, 40, 45);
+		
+		
+	//tractor car thing
+		ctx.drawImage(img, 40, 300, 30, 35, medlog, 420, 30, 35);
+		ctx.drawImage(img, 40, 300, 30, 35, medlog2, 420, 30, 35);
+		ctx.drawImage(img, 40, 300, 30, 35, medlog3, 420, 30, 35);
+
+	// yellow cars
+		yellow = yellow - 7;
+		yellow2 = yellow2 - 7;
+		yellow3 = yellow3 - 7;
+		
+		ctx.drawImage(img, 80, 252, 35, 35, yellow, 435, 40, 40);
+		ctx.drawImage(img, 80, 252, 35, 35, yellow2, 435, 40, 40);
+		ctx.drawImage(img, 80, 252, 35, 35, yellow3, 435, 40, 40);
+
+		if(yellow < -50){
+			yellow = 420;
+		}
+		
+		if(yellow2 < -50){
+			yellow2 = 420;
+		}
+		
+		if(yellow3 < -50){
+			yellow3 = 420;
+		}
+		
+		//trucks
+		ctx.drawImage(img, 100, 300, 50, 35, prpcar, 325, 55, 40);
+		ctx.drawImage(img, 100, 300, 50, 35, prpcar2, 325, 55, 40);
+		ctx.drawImage(img, 100, 300, 50, 35, prpcar3, 325, 55, 40);
+
+		
+		ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
+
+	}
 
 
 	// Life frogs
@@ -113,11 +239,8 @@ function start_game(){
 		ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
 		ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
 		
-	// purple car car
-		ctx.drawImage(img, 0, 252, 45, 45, 20, 380, 45, 45);
 
-	// white red car
-		ctx.drawImage(img, 40, 252, 40, 45, 200, 347, 40, 45);
+
 		
 	 
 	
@@ -159,7 +282,7 @@ function start_game(){
 				frog.y = 295
 			}
 			if(frog.y < 285){
-				frog.y = frog.y+15;
+				frog.y = frog.y+4;
 			}
 			if(frog.y >= 470){
 				frog.y = 475;
