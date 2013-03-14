@@ -15,6 +15,7 @@ function start_game(){
 		img.src = 'assets/frogger_sprites.png';
 		background();
 		
+		//draw the background
 		function background(){
 		    ctx.fillStyle = "rgb(19, 19, 70)";
 		    ctx.fillRect (0, 0, 399, 282);
@@ -35,31 +36,35 @@ function start_game(){
 			ctx.fillText("Score: "+points +"	Highscore: 0", 0, 555);
 			
 	// Put in "frogger" at the top, and green ending 
-			ctx.drawImage(img, 0, 0, 399, 100, 0, 0, 399, 100);
+			ctx.drawImage(img, 0, 0, 399, 100, 0, 0, 399, 115);
 	
 	// Put in large purple borders	
-			ctx.drawImage(img, 0, 120, 399, 30, 0, 283, 399, 40);
-			ctx.drawImage(img, 0, 120, 399, 30, 0, 475, 399, 40);
-		
-			}
+			ctx.drawImage(img, 0, 120, 399, 30, 0, 283, 399, 30);
+			ctx.drawImage(img, 0, 120, 399, 30, 0, 475, 399, 30);
+		}
 			
 			
 	delay = 80;
-	setInterval(move, delay);
-	var log = 400;
+	setInterval(log, delay);
+	var logs = 400;
 	var log2 = 150;
-	function move(){
+	
+	var medlog = 350;
+	var medlog2 = 150;
+	var medlog3 = 0;
+
+	function log(){
 	// Put in big logs
 		background();
-		log = log-10;
+		logs = logs-10;
 		log2 = log2-10;
 
-		ctx.drawImage(img, 0, 165, 190, 30, log, 200, 170, 30);
+		ctx.drawImage(img, 0, 165, 190, 30, logs, 185, 170, 30);
 		
-		ctx.drawImage(img, 0, 165, 190, 30, log2, 200, 170, 30);
+		ctx.drawImage(img, 0, 165, 190, 30, log2, 185, 170, 30);
 
-		if(log < -200){
-			log = 420;
+		if(logs < -200){
+			logs = 420;
 		}		
 		
 		if(log2 < -200){
@@ -67,13 +72,31 @@ function start_game(){
 		}
 		
 		ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
-
 	
-	// Put in medium logs
-//		ctx.drawImage(img, 0, 195, 210, 30, 20, 105, 180, 30);
-//		ctx.drawImage(img, 0, 195, 210, 30, 200, 105, 180, 30);
-//		ctx.drawImage(img, 0, 195, 210, 30, 385, 105, 180, 30);
+		medlog = medlog-5;
+		medlog2 = medlog2-5;
+		medlog3 = medlog3-5;
 		
+		ctx.drawImage(img, 0, 195, 210, 30, medlog, 117, 180, 30);
+
+		ctx.drawImage(img, 0, 195, 210, 30, medlog2, 117, 180, 30);
+
+		ctx.drawImage(img, 0, 195, 210, 30, medlog3, 117, 180, 30);
+
+		if(medlog < -150){
+			medlog = 420;
+		}
+		
+		if(medlog2 < -150){
+			medlog2 = 420;
+		}
+		
+		if(medlog3<-150){
+			medlog3 = 420;
+		}
+		
+	}
+	
 	// Put in small logs
 //		ctx.drawImage(img, 0, 226, 100, 26, -25, 150, 90, 25);
 //		ctx.drawImage(img, 0, 226, 100, 26, 140, 150, 90, 25);
@@ -96,7 +119,7 @@ function start_game(){
 	// white red car
 		ctx.drawImage(img, 40, 252, 40, 45, 200, 347, 40, 45);
 		
-	}
+	 
 	
 	// start frog
 		ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
@@ -113,13 +136,10 @@ function start_game(){
 				frog.y = 285;
 			}
 			if(frog.y < 285){
-				frog.y = frog.y - 15;
+				frog.y = frog.y - 4;
 			}
-			if(frog.y == 60){
-				frog.y = 70;
-			}
-			if(frog.y < 60){
-				frog.y = 70;
+			if(frog.y < 100){
+				frog.y = 85;
 				if(frog.x == 30|| frog.x == 0){
 					frog.x == 20;
 				}
