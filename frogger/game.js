@@ -60,7 +60,13 @@ function start_game(){
 	var trtl1 = 250;
 	var trtl2 = 220;
 	var trtl3 = 190;
-	var turtle_counter = 0;
+
+	var trtl4 = 375;
+	var trtl5 = 405;
+	var trtl6 = 435;
+	
+	var trtl7 = 30;
+	var trtl8 = 65;
 	
 	var prpcar = 50;
 	var prpcar2 = 150;
@@ -137,39 +143,79 @@ function start_game(){
 	
 	// some turtles
 	
-		trtl1 = trtl1 - 10;
-		trtl2 = trtl2 - 10;
-		trtl3 = trtl3 - 10;	
+		trtl1 = trtl1 - 8;
+		trtl2 = trtl2 - 8;
+		trtl3 = trtl3 - 8;	
+		trtl4 = trtl4 - 8;
+		trtl5 = trtl5 - 8;
+		trtl6 = trtl6 - 8;
+		trtl7 = trtl7 - 8;
+		trtl8 = trtl8 - 8;
 		
-		if(turtle_counter== 0){
+//		if(turtle_counter== 0){
 		ctx.drawImage(img, 10, 395, 35, 35, trtl1, 247, 30, 35);
 		ctx.drawImage(img, 10, 395, 35, 35, trtl2, 247, 30, 35);
 		ctx.drawImage(img, 10, 395, 35, 35, trtl3, 247, 30, 35);
+	
+		ctx.drawImage(img, 10, 395, 35, 35, trtl4, 247, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl5, 247, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl6, 247, 30, 35);
+
+		//higher up turtles
+		ctx.drawImage(img, 10, 395, 35, 35, trtl1, 145, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl2, 145, 30, 35);
 		
+		ctx.drawImage(img, 10, 395, 35, 35, trtl4, 145, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl5, 145, 30, 35);
+
+		ctx.drawImage(img, 10, 395, 35, 35, trtl7, 145, 30, 35);
+		ctx.drawImage(img, 10, 395, 35, 35, trtl8, 145, 30, 35);
+		
+
 //		turtle_counter = 1;
-		}
+//		}
 		
-		if(turtle_counter == 1){
-		ctx.drawImage(img, 50, 395, 35, 35, trtl1, 247, 30, 35);
-		ctx.drawImage(img, 50, 395, 35, 35, trtl2, 247, 30, 35);
-		ctx.drawImage(img, 50, 395, 35, 35, trtl3, 247, 30, 35);
+//		if(turtle_counter == 1){
+//		ctx.drawImage(img, 50, 395, 35, 35, trtl1, 247, 30, 35);
+//		ctx.drawImage(img, 50, 395, 35, 35, trtl2, 247, 30, 35);
+//		ctx.drawImage(img, 50, 395, 35, 35, trtl3, 247, 30, 35);
 		
-		turtle_counter ;
-		}
+//		turtle_counter ;
+//		}
 
 
-		if(trtl1 < -100){
+		if(trtl1 < -50){
 			trtl1 = 420;
 		}
 		
-		if(trtl2 < -100){
+		if(trtl2 < -50){
 			trtl2 = 420;
 		}
 		
-		if(trtl3 < -100){
+		if(trtl3 < -50){
 			trtl3 = 420;
 		}
 
+		if(trtl4 < -50){
+			trtl4 = 420;
+		}
+		
+		if(trtl5 < -50){
+			trtl5 = 420;
+		}
+		
+		if(trtl6 < -50){
+			trtl6 = 420;
+		}
+		
+		if(trtl7 < -50){
+			trtl7 = 420;
+		}
+		
+		if(trtl8 < -50){
+			trtl8 = 420;
+		}
+		
 	// purple car car
 		prpcar = prpcar - 8;
 		prpcar2 = prpcar2 - 8;
