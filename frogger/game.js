@@ -6,6 +6,7 @@ function start_game(){
 	var life = 2;
 	var level = 1;
 	var wins = 0;
+	var girl = 0;
 	var frog = [];
 	frog.x = 180;
 	frog.y = 475;
@@ -196,7 +197,7 @@ function start_game(){
 				}
 				
 				// only gets harder until level 4.  This is pretty dang fast.
-				if(leven >= 4){
+				if(level >= 4){
 					logs = logs+16;
 					log2 = log2+16;
 			
@@ -280,6 +281,8 @@ function start_game(){
 			ctx.drawImage(img, 0, 226, 100, 26, smlog, 219, 90, 25);
 			ctx.drawImage(img, 0, 226, 100, 26, smlog2, 219, 90, 25);
 			ctx.drawImage(img, 0, 226, 100, 26, smlog3, 219, 90, 25);
+		
+			
 			
 			if(smlog > 420){
 				smlog = -100;
@@ -291,6 +294,19 @@ function start_game(){
 			
 			if(smlog3 > 420){
 				smlog3 = -100;
+			}
+						
+			//only one girl frog per run			
+			if(girl == 0){
+				ctx.drawImage(img, 265, 400, 40, 30, smlog2+4, 215, 30, 25);
+			}		
+			
+			//points if you get the lady frog
+			if(frog.y == 217){
+				if(frog.x >= smlog2 && frog.x <= smlog2+6){
+					points += 200;
+					girl = 1;
+				}
 			}
 	
 		// some turtles
@@ -480,25 +496,28 @@ function start_game(){
 		}
 
 		if(frog.y == 85){
-			if(frog.x == 0 || frog.x == 90 || frog.x == 180 || frog.x == 270 || frog.x == 350){
+			console.log(frog.x);
+			if((frog.x >= -10 && frog.x<= 10) || (frog.x >= 80 && frog.x <= 100) || (frog.x >= 170 && frog.x <= 190) || (frog.x >= 260 && frog.x <= 280) || (frog.x >= 340 && frog.x <= 360)){
+//			if(frog.x == 0 || frog.x == 90 || frog.x == 180 || frog.x == 270 || frog.x == 350){
 				points += 50;
-				if(frog.x == 0){
+				girl = 0;
+				if(frog.x >= -10 && frog.x<= 10){
 					x1 = 110;
 					y1 = 360;
 				}
-				if(frog.x == 90){
+				if(frog.x >= 80 && frog.x <= 100){
 					x2 = 110;
 					y2 = 360;
 				}
-				if(frog.x ==180){
+				if(frog.x >= 170 && frog.x <= 190){
 					x3 = 110;
 					y3 = 360;
 				}
-				if(frog.x == 270){
+				if(frog.x >= 260 && frog.x <= 280){
 					x4 = 110;
 					y4 = 360;
 				}
-				if(frog.x == 350){
+				if(frog.x >= 340 && frog.x <= 360){
 					x5 = 110;
 					y5 = 360;
 				}
@@ -527,19 +546,21 @@ function start_game(){
 			}
 		}
 	});
+		
+	
 	
 	// check to see if the froggy died
 	function check(){
 		// check for yellow cars
 		if(frog.y == 445){
-			if(frog.x >= yellow-3 && frog.x <= yellow+3){
+			if(frog.x >= yellow-2 && frog.x <= yellow+3){
 				console.log('dead!');
 				return false;
 			}
-			if(frog.x >= yellow2-3 && frog.x <= yellow3+3){
+			if(frog.x >= yellow2-2 && frog.x <= yellow3+3){
 				return false;
 			}
-			if(frog.x >= yellow3-3 && frog.x <= yellow3 +3){
+			if(frog.x >= yellow3-2 && frog.x <= yellow3 +3){
 				return false;
 			}
 			else{
@@ -609,14 +630,162 @@ function start_game(){
 				return true;
 			}
 		}
+		
+		//medium logs
+			
+		var distance = 0;
+		
+		if(frog.y == 115){
+			if(frog.x >= medlog-2 && frog.x <= medlog+180){
+				frog.x = medlog+10;
+				if(medlog > 400){
+					return false;
+				}
+				return true;
+			}
+
+			if(frog.x >= medlog2-2 && frog.x <= medlog2+180){
+				frog.x = medlog2+10;
+				if(medlog2 > 400){
+					return false;
+				}
+				return true;
+			}
+			
+			if(frog.x >= medlog3-2 && frog.x <= medlog3+180){
+				frog.x = medlog3+10;
+				if(medlog3 > 400){
+					return false;
+				}
+				return true;
+			}
+			
+			else{
+				return false;
+			}
+		}
+		
+		// small turtle pads
+		
+		if(frog.y == 149){
+			if(frog.x >= trtl1-20 && frog.x<= trtl1+10 || frog.x > trtl2-10 && frog.x <= trtl2+20){
+				frog.x = trtl2;
+				if(trtl2==-40){
+					return false;
+				}
+				return true;
+			}
+			
+			if(frog.x >= trtl4-20 && frog.x <= trtl4+10 || frog.x >= trtl5-10 && frog.x <= trtl5+20){
+				frog.x = trtl5;
+				if(trtl5==-40){
+					return false;
+				}
+				return true;
+			}
+			
+			if(frog.x >= trtl7-20 &&frog.x <= trtl7+10 || frog.x >= trtl8-10 && frog.x <= trtl8+20){
+				frog.x = trtl8;
+				if(trtl8==-40){
+					return false;
+				}
+				return true;
+			}
+			
+			else{
+				return false;
+			}
+		
+		
+		}
+		
+		//big logs
+		if(frog.y == 183){
+				if(frog.x >= log-2 && frog.x <= log+250){
+				frog.x = log+10;
+				if(log > 400){
+					return false;
+				}
+				return true;
+			}
+
+			if(frog.x >= log2-2 && frog.x <= log2+250){
+				frog.x = log2+10;
+				if(log2 > 400){
+					return false;
+				}
+				return true;
+			}
+			
+			else{
+				return false;
+			}
+		}
+		
+		//small logs
+		if(frog.y == 217){
+			if(frog.x >= smlog-2 && frog.x <= smlog+150){
+				frog.x = smlog+10;
+				if(smlog > 400){
+					return false;
+				}
+				return true;
+			}
+
+			if(frog.x >= smlog2-2 && frog.x <= smlog2+150){
+				frog.x = smlog2+10;
+				if(smlog2 > 400){
+					return false;
+				}
+				return true;
+			}
+			
+			if(frog.x >= smlog3-2 && frog.x <= smlog3+180){
+				frog.x = smlog3+10;
+				if(smlog3 > 400){
+					return false;
+				}
+				return true;
+			}
+			
+			else{
+				return false;
+			}
+		}
+		
+		// the lower frog pads things
+		if(frog.y == 251){
+				if(frog.x >= trtl1-20 && frog.x<= trtl1+10 || frog.x >= trtl2-10 && frog.x <= trtl2+20 || frog.x >= trtl3-10 && frog.x <= trtl3+20){
+				frog.x = trtl2;
+				if(trtl2==-40){
+					return false;
+				}
+				return true;
+			}
+			
+			if(frog.x >= trtl4-20 && frog.x <= trtl4+10 || frog.x >= trtl5-10 && frog.x <= trtl5+20 || frog.x >= trtl6-10 && frog.x <= trtl6+20){
+				frog.x = trtl5;
+				if(trtl5==-40){
+					return false;
+				}
+				return true;
+			}
+
+			
+			else{
+				return false;
+			}
+		
+		}
+		
+		
 		else{
 			return true;
 		}
 	}
 
+
 }
-
-
 
 
 
