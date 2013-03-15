@@ -146,6 +146,11 @@ function start_game(){
 			ctx.drawImage(img, 0, 120, 399, 30, 0, 475, 399, 30);
 		}
 			
+		if(points == 10000){
+			if(life < 4){
+				life += 1;
+			}
+		}
 			
 		delay = 80;
 		setInterval(log, delay);
@@ -791,15 +796,15 @@ function start_game(){
 		
 		//big logs
 		if(frog.y == 183){
-				if(frog.x >= log-2 && frog.x <= log+250){
-				frog.x = log+10;
-				if(log > 400){
+				if(frog.x >= logs-10 && frog.x <= logs+300){
+				frog.x = logs+10;
+				if(logs > 400){
 					return false;
 				}
 				return true;
 			}
 
-			if(frog.x >= log2-2 && frog.x <= log2+250){
+			if(frog.x >= log2-2 && frog.x <= log2+300){
 				frog.x = log2+10;
 				if(log2 > 400){
 					return false;
