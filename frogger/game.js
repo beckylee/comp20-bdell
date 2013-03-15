@@ -3,9 +3,13 @@ function start_game(){
 
 	canvas = document.getElementById('game');
 	var points = 0;
+	var life = 2;
+	var level = 1;
+	var wins = 0;
 	var frog = [];
 	frog.x = 180;
 	frog.y = 475;
+
 	
 	if (canvas.getContext) {
 	    ctx = canvas.getContext('2d');
@@ -15,8 +19,20 @@ function start_game(){
 		img.src = 'assets/frogger_sprites.png';
 		background();
 		
+		var x1 = 130;
+		var x2 = 130;
+		var x3 = 130;
+		var x4 = 130;
+		var x5 = 130;
+		var y1 = 395;
+		var y2 = 395;
+		var y3 = 395;
+		var y4 = 395;
+		var y5 = 395;
+		
 		//draw the background
 		function background(){
+		
 		    ctx.fillStyle = "rgb(19, 19, 70)";
 		    ctx.fillRect (0, 0, 399, 282);
 	    
@@ -26,11 +42,20 @@ function start_game(){
 	
 			var img = new Image();
 			img.src = 'assets/frogger_sprites.png';
-		
+
+			// draw the landing pads (with or without frogs on them)
+			ctx.drawImage(img, x1, y1, 35, 35, 5, 80, 30, 35);
+			ctx.drawImage(img, x2, y2, 35, 35, 93, 80, 30, 35);
+			ctx.drawImage(img, x3, y3, 35, 35, 181, 80, 30, 35);
+			ctx.drawImage(img, x4, y4, 35, 35, 269, 80, 30, 35);
+			ctx.drawImage(img, x5, y5, 35, 35, 355, 80, 30, 35);
+			
+					ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+		ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
 	//Text
 			ctx.fillStyle="rgb(0, 255, 0)";
 			ctx.font="20px Verdana";
-			ctx.fillText("Level 1", 50, 535);
+			ctx.fillText("Level " + level, 50, 535);
 			
 			ctx.font="11px Verdana";
 			ctx.fillText("Score: "+points +"	Highscore: 0", 0, 555);
@@ -81,42 +106,143 @@ function start_game(){
 			background();
 			
 			if(check()==true){
-			logs = logs+10;
-			log2 = log2+10;
+			//set speed of all moving objects
+				if(level == 1){
+					logs = logs+10;
+					log2 = log2+10;
 			
-			medlog = medlog+5;
-			medlog2 = medlog2+5;
-			medlog3 = medlog3+5;
+					medlog = medlog+5;
+					medlog2 = medlog2+5;
+					medlog3 = medlog3+5;
 			
-			yellow = yellow - 7;
-			yellow2 = yellow2 - 7;
-			yellow3 = yellow3 - 7;
+					yellow = yellow - 6;
+					yellow2 = yellow2 - 6;
+					yellow3 = yellow3 - 6;
 			
-			prpcar = prpcar - 8;
-			prpcar2 = prpcar2 - 8;
-			prpcar3 = prpcar3 - 8;
+					prpcar = prpcar - 8;
+					prpcar2 = prpcar2 - 8;
+					prpcar3 = prpcar3 - 8;
 			
-			trtl1 = trtl1 - 8;
-			trtl2 = trtl2 - 8;
-			trtl3 = trtl3 - 8;	
-			trtl4 = trtl4 - 8;
-			trtl5 = trtl5 - 8;
-			trtl6 = trtl6 - 8;
-			trtl7 = trtl7 - 8;
-			trtl8 = trtl8 - 8;	
+					trtl1 = trtl1 - 8;
+					trtl2 = trtl2 - 8;
+					trtl3 = trtl3 - 8;	
+					trtl4 = trtl4 - 8;
+					trtl5 = trtl5 - 8;
+					trtl6 = trtl6 - 8;
+					trtl7 = trtl7 - 8;
+					trtl8 = trtl8 - 8;	
 			
-			smlog = smlog + 2;
-			smlog2 = smlog2 + 2;
-			smlog3 = smlog3 + 2;
-			}else{
-			var dead = new Image();
-			dead.src = 'assets/dead_frog.png';
-			ctx.drawImage(dead, 0, 0, 30, 30,frog.x, frog.y, 40, 40);
-			frog.x = 180;
-			frog.y = 475;
-			background();
-			ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
+					smlog = smlog + 2;
+					smlog2 = smlog2 + 2;
+					smlog3 = smlog3 + 2;	
+				}
+				if(level == 2){
+					logs = logs+12;
+					log2 = log2+12;
+			
+					medlog = medlog+7;
+					medlog2 = medlog2+7;
+					medlog3 = medlog3+7;
+			
+					yellow = yellow - 8;
+					yellow2 = yellow2 - 8;
+					yellow3 = yellow3 - 8;
+			
+					prpcar = prpcar - 10;
+					prpcar2 = prpcar2 - 10;
+					prpcar3 = prpcar3 - 10;
+			
+					trtl1 = trtl1 - 10;
+					trtl2 = trtl2 - 10;
+					trtl3 = trtl3 - 10;	
+					trtl4 = trtl4 - 10;
+					trtl5 = trtl5 - 10;
+					trtl6 = trtl6 - 10;
+					trtl7 = trtl7 - 10;
+					trtl8 = trtl8 - 10;	
+			
+					smlog = smlog + 4;
+					smlog2 = smlog2 + 4;
+					smlog3 = smlog3 + 4;
+				}
+				if(level == 3){
+					logs = logs+14;
+					log2 = log2+14;
+			
+					medlog = medlog+9;
+					medlog2 = medlog2+9;
+					medlog3 = medlog3+9;
+			
+					yellow = yellow - 10;
+					yellow2 = yellow2 - 10;
+					yellow3 = yellow3 - 10;
+			
+					prpcar = prpcar - 12;
+					prpcar2 = prpcar2 - 12;
+					prpcar3 = prpcar3 - 12;
+			
+					trtl1 = trtl1 - 12;
+					trtl2 = trtl2 - 12;
+					trtl3 = trtl3 - 12;	
+					trtl4 = trtl4 - 12;
+					trtl5 = trtl5 - 12;
+					trtl6 = trtl6 - 12;
+					trtl7 = trtl7 - 12;
+					trtl8 = trtl8 - 12;	
+			
+					smlog = smlog + 6;
+					smlog2 = smlog2 + 6;
+					smlog3 = smlog3 + 6;
+				}
+				
+				// only gets harder until level 4.  This is pretty dang fast.
+				if(leven >= 4){
+					logs = logs+16;
+					log2 = log2+16;
+			
+					medlog = medlog+11;
+					medlog2 = medlog2+11;
+					medlog3 = medlog3+11;
+			
+					yellow = yellow - 12;
+					yellow2 = yellow2 - 12;
+					yellow3 = yellow3 - 12;
+			
+					prpcar = prpcar - 14;
+					prpcar2 = prpcar2 - 14;
+					prpcar3 = prpcar3 - 14;
+			
+					trtl1 = trtl1 - 14;
+					trtl2 = trtl2 - 14;
+					trtl3 = trtl3 - 14;	
+					trtl4 = trtl4 - 14;
+					trtl5 = trtl5 - 14;
+					trtl6 = trtl6 - 14;
+					trtl7 = trtl7 - 14;
+					trtl8 = trtl8 - 14;	
+			
+					smlog = smlog + 8;
+					smlog2 = smlog2 + 8;
+					smlog3 = smlog3 + 8;
+				}
 			}
+			else{
+				var dead = new Image();
+				life -= 1;
+				dead.src = 'assets/dead_frog.png';
+				ctx.drawImage(dead, 0, 0, 30, 30,frog.x, frog.y, 40, 40);
+				frog.x = 180;
+				frog.y = 475;
+				setTimeout(function(){
+				background();
+				ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
+				},1250);
+			}
+			
+			
+			// set locations of all objects
+			
+			// large logs
 			ctx.drawImage(img, 0, 165, 190, 30, logs, 185, 170, 30);
 			
 			ctx.drawImage(img, 0, 165, 190, 30, log2, 185, 170, 30);
@@ -128,7 +254,8 @@ function start_game(){
 			if(log2 > 420){
 				log2 = -200;
 			}
-					
+				
+			//medium logs	
 			ctx.drawImage(img, 0, 195, 210, 30, medlog, 117, 180, 30);
 	
 			ctx.drawImage(img, 0, 195, 210, 30, medlog2, 117, 180, 30);
@@ -319,8 +446,8 @@ function start_game(){
 	// go down
 		if(event.keyCode == 40){
 			frog.y = frog.y + 30;
-			if(frog.y == 285){
-				frog.y = 295
+			if(frog.y == 315){
+				frog.y = 325;
 			}
 			if(frog.y < 285){
 				frog.y = frog.y+4;
@@ -355,9 +482,45 @@ function start_game(){
 		if(frog.y == 85){
 			if(frog.x == 0 || frog.x == 90 || frog.x == 180 || frog.x == 270 || frog.x == 350){
 				points += 50;
+				if(frog.x == 0){
+					x1 = 110;
+					y1 = 360;
+				}
+				if(frog.x == 90){
+					x2 = 110;
+					y2 = 360;
+				}
+				if(frog.x ==180){
+					x3 = 110;
+					y3 = 360;
+				}
+				if(frog.x == 270){
+					x4 = 110;
+					y4 = 360;
+				}
+				if(frog.x == 350){
+					x5 = 110;
+					y5 = 360;
+				}
 				background();
 				ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
-				
+				wins += 1;
+				if(wins == 5){
+					points += 1000;
+					wins = 0;
+					level += 1;
+					alert('Congratulations! Level up!');
+					x1 = 135;
+					x2 = 135;
+					x3 = 135;
+					x4 = 135;
+					x5 = 135;
+					y1 = 395;
+					y2 = 395;
+					y3 = 395;
+					y4 = 395;
+					y5 = 395;
+				}
 				frog.x = 180;
 				frog.y = 475;
 				//yay you won!
@@ -433,13 +596,13 @@ function start_game(){
 		
 		//check for truck
 		if(frog.y == 325){
-			if(frog.x >= prpcar-4 && frog.x <= prpcar+4){
+			if(frog.x >= prpcar-5 && frog.x <= prpcar+5){
 				return false;
 			}
-			if(frog.x >=prpcar2-4 && frog.x <= prpcar2+4){
+			if(frog.x >=prpcar2-5 && frog.x <= prpcar2+5){
 				return false;
 			}
-			if(frog.x >= prpcar3-4 && frog.x <= prpcar3+4){
+			if(frog.x >= prpcar3-5 && frog.x <= prpcar3+5){
 				return false;
 			}
 			else{
