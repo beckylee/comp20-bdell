@@ -5,7 +5,9 @@ Frogger README
 	      - dead_frog.png shows up when the frog gets run over/in the water
 	      - levels get progressively harder and faster until level 4.
 	      - the lady frog floats along, and gives you 200 points if you 
-	      	get her.  But she doesn't disappear afterw
+	      	get her.
+	      - snake slithers around the middle purple bit.  If he gest you
+	      	you die.
 
 2.  Phil Tang helped me recover lost data.
 
