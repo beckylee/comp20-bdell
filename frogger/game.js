@@ -3,7 +3,7 @@ function start_game(){
 
 	canvas = document.getElementById('game');
 	var points = 0;
-	var life = 2;
+	var life = 5;
 	var level = 1;
 	var wins = 0;
 	var girl = 0;
@@ -51,12 +51,89 @@ function start_game(){
 			ctx.drawImage(img, x4, y4, 35, 35, 269, 80, 30, 35);
 			ctx.drawImage(img, x5, y5, 35, 35, 355, 80, 30, 35);
 			
-					ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
-		ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+			//lives
+			if(life == 1){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+			}
+			if(life == 2){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+			}
+			if(life == 3){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+			}
+			if(life == 4){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+			}
+			if(life == 5){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+			}
+			if(life == 6){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 75, 515, 20, 20);
+			}
+			if(life == 7){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 75, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 90, 515, 20, 20);
+			}
+			if(life == 8){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 75, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 90, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 105, 515, 20, 20);
+			}
+
+			if(life == 9){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 75, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 90, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 105, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 120, 515, 20, 20);
+			}			
+
+			if(life >= 10){
+				ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 30, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 45, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 60, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 75, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 90, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 105, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 120, 515, 20, 20);
+				ctx.drawImage(img, 10, 325, 30, 30, 135, 515, 20, 20);				
+			}	
+
 	//Text
 			ctx.fillStyle="rgb(0, 255, 0)";
 			ctx.font="20px Verdana";
-			ctx.fillText("Level " + level, 50, 535);
+			ctx.fillText("Level " + level, 150, 535);
 			
 			ctx.font="11px Verdana";
 			ctx.fillText("Score: "+points +"	Highscore: 0", 0, 555);
@@ -239,7 +316,18 @@ function start_game(){
 				ctx.drawImage(img, 40, 360, 30, 30, 180, 475, 25, 25);
 				},1250);
 			}
-			
+			if(life == 0){			
+				ctx.font="40px Verdana";
+				ctx.fillText("Game Over", 75, 200);
+				
+				ctx.font="20px Verdana";
+				ctx.fillText("Final Score: " + points, 120, 250);
+				ctx.fillText("Level " + level, 165, 275);
+				
+				ctx.font="15px Verdana";
+				ctx.fillText("Refresh this page to play again", 85, 400);
+				return 0;
+			}	
 			
 			// set locations of all objects
 			
@@ -454,7 +542,9 @@ function start_game(){
 			}
 			ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
 			
-			points += 10;
+			if(check() == true){
+				points += 10;
+			}
 			
 			console.log(frog.y);
 		}
