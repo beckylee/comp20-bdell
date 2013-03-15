@@ -5,6 +5,7 @@ function start_game(){
 	var points = 0;
 	var life = 5;
 	var level = 1;
+	var counter = 0;
 	var wins = 0;
 	var girl = 0;
 	var frog = [];
@@ -183,6 +184,8 @@ function start_game(){
 		var yellow = 90;
 		var yellow2 = 275;
 		var yellow3 = 355;
+		
+		var snake = 415;
 
 		function log(){
 		// Put in big logs
@@ -506,20 +509,28 @@ function start_game(){
 			ctx.drawImage(img, 100, 300, 50, 35, prpcar, 325, 55, 40);
 			ctx.drawImage(img, 100, 300, 50, 35, prpcar2, 325, 55, 40);
 			ctx.drawImage(img, 100, 300, 50, 35, prpcar3, 325, 55, 40);
+		
+
+			// draw a snake
+
+			if(counter == 0 || counter == 1){
+				ctx.drawImage(img, 180, 245, 40, 20, yellow2, 283, 40, 20);
+				counter += 1;
+			}else if(counter == 2 || counter == 3){
+				ctx.drawImage(img, 180, 275, 40, 20, yellow2, 283, 40, 20);
+				counter += 1;
+			}else if(counter == 4 || counter == 5){
+				ctx.drawImage(img, 180, 295, 40, 20, yellow2, 283, 40, 20);
+				counter = 0;
+			}
+				
 
 			// redraw the froggy
 			ctx.drawImage(img, 40, 360, 30, 30, frog.x, frog.y, 25, 25);
 			check();
-		
+			
+			
 		}
-
-	// Life frogs
-	
-		ctx.drawImage(img, 10, 325, 30, 30, 0, 515, 20, 20);
-		ctx.drawImage(img, 10, 325, 30, 30, 15, 515, 20, 20);
-		
-
-
 		
 	 
 	
@@ -871,6 +882,16 @@ function start_game(){
 				return false;
 			}
 		
+		}
+		
+		//check for the snake
+		if(frog.y == 285){
+			if(frog.x >= yellow2-2 && frog.x <= yellow2+3){
+				return false;
+			}
+			else{
+				return true;
+			}
 		}
 		
 		
