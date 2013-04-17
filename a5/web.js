@@ -2,19 +2,29 @@ var express = require("express");
 
 var app = express();
 app.use(express.logger());
+	app.use(express.bodyParser());
 
 var MONGOHQ_URL = 'mongodb://beckylee.dell@tufts.edu:Flopsy@dharma.mongohq.com:10042/scores';
-    
+
+var username;
 //get info for top score from user
 app.get('/submit.json', function(request, response){
 	response.sendfile(__dirname + '/submit.html');
-	// do I need to send info from here to the post below?
 });
 	
 //Save the info
 app.post('/submit.json', function(request, response){
 	//send information to mongodb somehow.
-	response.send("Information saved! (eventually)" + game_title);	
+	
+	var game_title = request.body.game_title;
+	var user = request.body.username;
+	var score = request.body.score;
+	
+	console.log(game_title + user + score);
+//	var game_title = request.game_title;
+	
+//	response.send("Information saved! " );	
+	response.sendfile(__dirname + '/submit.html');
 
 });
 
