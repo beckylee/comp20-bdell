@@ -2,7 +2,7 @@ var express = require("express");
 
 var app = express();
 app.use(express.logger());
-	app.use(express.bodyParser());
+app.use(express.bodyParser());
 
 var MONGOHQ_URL = 'mongodb://beckylee.dell@tufts.edu:Flopsy@dharma.mongohq.com:10042/scores';
 
@@ -20,6 +20,7 @@ app.post('/submit.json', function(request, response){
 	var user = request.body.username;
 	var score = request.body.score;
 	
+	//get the current date (date of submission)
 	var date = new Date();
 	var hour = date.getHours();
 	var minute = date.getMinutes();
@@ -27,12 +28,25 @@ app.post('/submit.json', function(request, response){
 	var month = date.getMonth() + 1;
 	var year = date.getFullYear();
 		
-//	var new_data = 
+	var curr_date = month + "/" + day + "/" + year + "/" + hour + ":" + minute;
 	
-	console.log(month + "/" + day + "/" + year + "/" + hour + ":" + minute);
-//	var game_title = request.game_title;
+	var data = {"game_title" : game_title, "username" : user,"score" : score,"created_at" : curr_date};
 	
-//	response.send("Information saved! " );	
+	console.log(data);
+	
+	
+/*	var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
+	
+	var mongo = require('mongodb');
+
+
+	var db = mongo.Db.connect(mongoUri, {safe: true, strict: false}, function(error, scorecenter){
+		console.log(error);
+		db = scorecenter;
+//		db.insert(data);
+	});
+
+*/	
 	response.sendfile(__dirname + '/submit.html');
 
 });
