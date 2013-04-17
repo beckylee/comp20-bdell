@@ -20,7 +20,16 @@ app.post('/submit.json', function(request, response){
 	var user = request.body.username;
 	var score = request.body.score;
 	
-	console.log(game_title + user + score);
+	var date = new Date();
+	var hour = date.getHours();
+	var minute = date.getMinutes();
+	var day = date.getDate();	
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+		
+//	var new_data = 
+	
+	console.log(month + "/" + day + "/" + year + "/" + hour + ":" + minute);
 //	var game_title = request.game_title;
 	
 //	response.send("Information saved! " );	
@@ -48,6 +57,8 @@ app.get('/highscores.json', function(request, response){
 
 // Post the top 10 scores
 app.post('/highscores.json', function(request, response){
+	var game_title = request.body.game_title;
+	
 	response.send('Top scores!');
 	//show top ten scores
 });
@@ -77,6 +88,7 @@ app.get('/usersearch.json', function(request, response){
 
 //show that user's scores
 app.post('/usersearch.json', function(request, response){
+	var user = request.body.username;
 	response.send('Scores for that user!');
 	//show those scores
 });
