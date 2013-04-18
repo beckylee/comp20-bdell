@@ -4,9 +4,10 @@ var app = express();
 app.use(express.logger());
 app.use(express.bodyParser());
 
-var MONGOHQ_URL = 'mongodb://beckylee.dell@tufts.edu:Flopsy@dharma.mongohq.com:10042/scores';
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
+var MONGOHQ_URL = 'mongodb://beckylee:Flopsy@dharma.mongohq.com:10042/scores';
+
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scores';
 	
 var mongo = require('mongodb');
 
@@ -21,6 +22,7 @@ var mongo = require('mongodb');
 app.get('/submit.json', function(request, response){
 	response.sendfile(__dirname + '/submit.html');
 });
+
 	
 //Save the info
 app.post('/submit.json', function(request, response){
@@ -75,6 +77,9 @@ app.get('/highscores.json', function(request, response){
 // Post the top 10 scores
 //still needs to be put in order, and only show top 10.  Also be pretty.
 app.post('/highscores.json', function(request, response){
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Acces-Control-Allow-Headers", "X-Requested-With");
+	
 	var game_title = request.body.game_title;
 	
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
@@ -116,6 +121,9 @@ app.get('/usersearch.json', function(request, response){
 //show that user's scores
 //make pretty.
 app.post('/usersearch.json', function(request, response){
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Acces-Control-Allow-Headers", "X-Requested-With");
+	
 	var user = request.body.username;
 	console.log("user: " + user);
 	
@@ -131,6 +139,7 @@ app.post('/usersearch.json', function(request, response){
 
 	//show those scores
 });
+
 
 var port = process.env.PORT || 5000;
 app.listen(port, function(){
