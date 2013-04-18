@@ -29,6 +29,7 @@ app.post('/submit.json', function(request, response){
 	var game_title = request.body.game_title;
 	var user = request.body.username;
 	var score = request.body.score;
+	var saved;
 	
 	//get the current date (date of submission)
 	var date = new Date();
@@ -40,7 +41,7 @@ app.post('/submit.json', function(request, response){
 		
 	var curr_date = month + "/" + day + "/" + year + "/" + hour + ":" + minute;
 	
-	var data = {"game_title" : game_title, "username" : user,"score" : score,"created_at" : curr_date};
+	var data = {"game_title" : game_title, "username" : user,"score" : score,"created_at" : curr_date, "saved" : "yes"};
 	
 	console.log(data);
 	
@@ -83,19 +84,29 @@ app.post('/highscores.json', function(request, response){
 
 //homepage should show top scores for all games.
 app.get('/', function(request, response){
-	var info;
+		mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		var collection = db.collection("scorecenter");
+		collection.find({saved: "yes"}).toArray(function(error, results){
+//			array.sort(results);
+			response.send(results);
+			
+		});
+	});
 
 //	response.send("top scores: " + info);
 });
 
 app.post('/', function(request, response){
-/*	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
-		collection.find({}).toArray(function(error, results){
+		collection.find({saved: yes}).toArray(function(error, results){
 //			array.sort(results);
-*/			response.send(results);
-//	});
+			response.send(results);
+			
+		});
+	});
 });
 
 
