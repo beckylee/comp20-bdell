@@ -3,4 +3,4 @@ Beckylee Dell
 
 1. The full frame of it is up, connects to mongodb, but doesn't acutally DO anything.
 2. Phil Tang has been explaining how a lot of things work.  
-3. 7 hours.
+3. 10 hours.

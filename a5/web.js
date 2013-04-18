@@ -6,7 +6,17 @@ app.use(express.bodyParser());
 
 var MONGOHQ_URL = 'mongodb://beckylee.dell@tufts.edu:Flopsy@dharma.mongohq.com:10042/scores';
 
-var username;
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
+	
+var mongo = require('mongodb');
+
+	db = mongo.Db.connect(mongoUri, {safe: true, strict: false}, function(error, scorecenter){
+		if(error) throw error;
+		console.log(error);
+		db = scorecenter;
+	});
+
+//var username;
 //get info for top score from user
 app.get('/submit.json', function(request, response){
 	response.sendfile(__dirname + '/submit.html');
@@ -34,19 +44,12 @@ app.post('/submit.json', function(request, response){
 	
 	console.log(data);
 	
-	
-/*	var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
-	
-	var mongo = require('mongodb');
-
-
-	var db = mongo.Db.connect(mongoUri, {safe: true, strict: false}, function(error, scorecenter){
-		console.log(error);
-		db = scorecenter;
-//		db.insert(data);
+	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		db.insert(data);
 	});
 
-*/	
+	
 	response.sendfile(__dirname + '/submit.html');
 
 });
@@ -57,7 +60,7 @@ app.get('/highscores.json', function(request, response){
 	
 		response.sendfile(__dirname + '/highscores.html');
 		//get the title and pass it to mongodb
-		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
+/*		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
 		var mongo = require('mongodb');
 
 		var db = mongo.Db.connect(mongoUri, {safe:true}, function(error, scorecenter){
@@ -66,7 +69,7 @@ app.get('/highscores.json', function(request, response){
 			console.log(scorecenter);
 		// go through and find top ten
 		});
-
+*/
 });
 
 // Post the top 10 scores
@@ -80,7 +83,7 @@ app.post('/highscores.json', function(request, response){
 
 //homepage should show top scores for all games.
 app.get('/', function(request, response){
-		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
+/*		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
 		var mongo = require('mongodb');
 
 		var db = mongo.Db.connect(mongoUri, {safe:true}, function(error, scorecenter){
@@ -89,7 +92,7 @@ app.get('/', function(request, response){
 			console.log(scorecenter);
 		// find and list all of the top scores
 		});
-	response.send("top scores: " + db);
+*/	response.send("top scores: " + db);
 });
 
 
