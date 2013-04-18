@@ -89,7 +89,7 @@ app.get('/', function(request, response){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		info = collection.find({username: user}, function(error, document){
-			console.og(document.name);
+			console.log(document.name);
 			});
 	});
 *///	info = JSON.parse(info);
@@ -116,12 +116,11 @@ app.post('/usersearch.json', function(request, response){
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
-		collection.find({username: user}, function(error, document){
-			console.log(document.name);
+		collection.find({username: user}).toArray(function(error, results){
+			console.log(results);
 		});
 	});
 	
-	//	response.sendfile(document.name);
 
 	//show those scores
 });
