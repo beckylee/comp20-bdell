@@ -26,9 +26,15 @@ app.get('/submit.json', function(request, response){
 app.post('/submit.json', function(request, response){
 	//send information to mongob somehow.
 	
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Acces-Control-Allow-Headers", "X-Requested-With");
+	
 	var game_title = request.body.game_title;
 	var user = request.body.username;
 	var score = request.body.score;
+
+//check to see if the score is a number?
+
 	var saved;
 	
 	//get the current date (date of submission)
@@ -65,7 +71,9 @@ app.get('/highscores.json', function(request, response){
 
 });
 
+
 // Post the top 10 scores
+//still needs to be put in order, and only show top 10.  Also be pretty.
 app.post('/highscores.json', function(request, response){
 	var game_title = request.body.game_title;
 	
@@ -77,12 +85,12 @@ app.post('/highscores.json', function(request, response){
 			response.send(results);
 		});
 	});
-//	response.send('Top scores!');
 	//show top ten scores
 });
 	
 
 //homepage should show top scores for all games.
+//put it in order and make pretty.
 app.get('/', function(request, response){
 		mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
@@ -106,6 +114,7 @@ app.get('/usersearch.json', function(request, response){
 });
 
 //show that user's scores
+//make pretty.
 app.post('/usersearch.json', function(request, response){
 	var user = request.body.username;
 	console.log("user: " + user);
@@ -114,7 +123,7 @@ app.post('/usersearch.json', function(request, response){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		collection.find({username: user}).toArray(function(error, results){
-				
+//			'/usersearch.html'.getElementById("list").innerHTML = results;
 			response.send(results);
 		});
 	});
