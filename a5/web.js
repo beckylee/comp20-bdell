@@ -24,7 +24,7 @@ app.get('/submit.json', function(request, response){
 	
 //Save the info
 app.post('/submit.json', function(request, response){
-	//send information to mongodb somehow.
+	//send information to mongob somehow.
 	
 	var game_title = request.body.game_title;
 	var user = request.body.username;
@@ -46,7 +46,8 @@ app.post('/submit.json', function(request, response){
 	
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
-		db.insert(data);
+		var collection = db.collection("scorecenter");
+		collection.insert(data);
 	});
 
 	
@@ -83,16 +84,20 @@ app.post('/highscores.json', function(request, response){
 
 //homepage should show top scores for all games.
 app.get('/', function(request, response){
-/*		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
-		var mongo = require('mongodb');
+	var info;
+/*	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		var collection = db.collection("scorecenter");
+		info = collection.find({username: user}, function(error, document){
+			console.og(document.name);
+			});
+	});
+*///	info = JSON.parse(info);
+//	response.send("top scores: " + info);
+});
 
-		var db = mongo.Db.connect(mongoUri, {safe:true}, function(error, scorecenter){
-			
-			db = scorecenter;
-			console.log(scorecenter);
-		// find and list all of the top scores
-		});
-*/	response.send("top scores: " + db);
+app.post('/', function(request, response){
+	response.send("fuck if i know");
 });
 
 
@@ -106,7 +111,18 @@ app.get('/usersearch.json', function(request, response){
 //show that user's scores
 app.post('/usersearch.json', function(request, response){
 	var user = request.body.username;
-	response.send('Scores for that user!');
+	console.log("user: " + user);
+	
+	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		var collection = db.collection("scorecenter");
+		collection.find({username: user}, function(error, document){
+			console.log(document.name);
+		});
+	});
+	
+	//	response.sendfile(document.name);
+
 	//show those scores
 });
 
