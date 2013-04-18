@@ -61,23 +61,22 @@ app.get('/highscores.json', function(request, response){
 	
 		response.sendfile(__dirname + '/highscores.html');
 		//get the title and pass it to mongodb
-/*		var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scorecenter';
-		var mongo = require('mongodb');
 
-		var db = mongo.Db.connect(mongoUri, {safe:true}, function(error, scorecenter){
-			
-			db = scorecenter;
-			console.log(scorecenter);
-		// go through and find top ten
-		});
-*/
 });
 
 // Post the top 10 scores
 app.post('/highscores.json', function(request, response){
 	var game_title = request.body.game_title;
 	
-	response.send('Top scores!');
+	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		var collection = db.collection("scorecenter");
+		collection.find({game_title: game_title}).toArray(function(error, results){
+//			array.sort(results);
+			response.send(results);
+		});
+	});
+//	response.send('Top scores!');
 	//show top ten scores
 });
 	
@@ -85,19 +84,18 @@ app.post('/highscores.json', function(request, response){
 //homepage should show top scores for all games.
 app.get('/', function(request, response){
 	var info;
-/*	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
-		if(error) throw error;
-		var collection = db.collection("scorecenter");
-		info = collection.find({username: user}, function(error, document){
-			console.log(document.name);
-			});
-	});
-*///	info = JSON.parse(info);
+
 //	response.send("top scores: " + info);
 });
 
 app.post('/', function(request, response){
-	response.send("fuck if i know");
+/*	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
+		if(error) throw error;
+		var collection = db.collection("scorecenter");
+		collection.find({}).toArray(function(error, results){
+//			array.sort(results);
+*/			response.send(results);
+//	});
 });
 
 
@@ -117,7 +115,7 @@ app.post('/usersearch.json', function(request, response){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		collection.find({username: user}).toArray(function(error, results){
-			console.log(results);
+			response.send(results);
 		});
 	});
 	
