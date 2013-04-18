@@ -94,20 +94,8 @@ app.get('/', function(request, response){
 		});
 	});
 
-//	response.send("top scores: " + info);
 });
 
-app.post('/', function(request, response){
-	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
-		if(error) throw error;
-		var collection = db.collection("scorecenter");
-		collection.find({saved: yes}).toArray(function(error, results){
-//			array.sort(results);
-			response.send(results);
-			
-		});
-	});
-});
 
 
 
@@ -126,6 +114,7 @@ app.post('/usersearch.json', function(request, response){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		collection.find({username: user}).toArray(function(error, results){
+				
 			response.send(results);
 		});
 	});
