@@ -71,6 +71,7 @@ app.post('/submit.json', function(request, response){
 //Allow user input for game, then search mongodb for that game
 app.get('/highscores.json', function(request, response){
 			response.sendfile(__dirname + '/highscores.html');
+			
 });
 
 // Post the top 10 scores
@@ -83,10 +84,8 @@ app.post('/highscores.json', function(request, response){
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
-//		collection.find().sort({game_title: game_title}).limit(10));
+		
 		collection.find({game_title: game_title}).toArray(function(error, results){
-//			array.sort(results);
-//			results = results.sort({score:-1});
 //			var str = JSON.parse(results);
 			console.log(results);
 			response.send(results);
