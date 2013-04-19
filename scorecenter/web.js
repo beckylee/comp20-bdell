@@ -17,12 +17,12 @@ var mongo = require('mongodb');
 		db = scorecenter;
 	});
 
-//var username;
+
+
 //get info for top score from user
 app.get('/submit.json', function(request, response){
 	response.sendfile(__dirname + '/submit.html');
 });
-
 	
 //Save the info
 app.post('/submit.json', function(request, response){
@@ -33,10 +33,10 @@ app.post('/submit.json', function(request, response){
 	
 	var game_title = request.body.game_title;
 	var user = request.body.username;
+	
+	// make sure the score is actually a number
 	var score = parseInt(request.body.score);
 	
-//check to see if the score is a number?
-
 	var saved;
 	
 	//get the current date (date of submission)
@@ -49,10 +49,12 @@ app.post('/submit.json', function(request, response){
 		
 	var curr_date = month + "/" + day + "/" + year + "/" + hour + ":" + minute;
 	
+	//Create a json api
 	var data = {"game_title" : game_title, "username" : user,"score" : score,"created_at" : curr_date, "saved" : "yes"};
 	
 	console.log(data);
-	
+
+	//add new data to the mongo database	
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
@@ -65,17 +67,13 @@ app.post('/submit.json', function(request, response){
 });
 
 
+
 //Allow user input for game, then search mongodb for that game
 app.get('/highscores.json', function(request, response){
-	
-		response.sendfile(__dirname + '/highscores.html');
-		//get the title and pass it to mongodb
-
+			response.sendfile(__dirname + '/highscores.html');
 });
 
-
 // Post the top 10 scores
-//still needs to be put in order, and only show top 10.  Also be pretty.
 app.post('/highscores.json', function(request, response){
 	response.header("Access-Control-Allow-Origin", "*");
 	response.header("Acces-Control-Allow-Headers", "X-Requested-With");
@@ -94,23 +92,19 @@ app.post('/highscores.json', function(request, response){
 			response.send(results);
 		});
 	});
-	//show top ten scores
 });
 	
 
 //homepage should show top scores for all games.
-//put it in order and make pretty.
 app.get('/', function(request, response){
 		mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		collection.find({saved: "yes"}).toArray(function(error, results){
-//			array.sort(results);
 			response.send(results);
 			
 		});
 	});
-
 });
 
 
@@ -119,11 +113,9 @@ app.get('/', function(request, response){
 //user input for a username
 app.get('/usersearch.json', function(request, response){
 	response.sendfile(__dirname + '/usersearch.html');
-	// search mongodb for that name
 });
 
 //show that user's scores
-//make pretty.
 app.post('/usersearch.json', function(request, response){
 	response.header("Access-Control-Allow-Origin", "*");
 	response.header("Acces-Control-Allow-Headers", "X-Requested-With");
@@ -135,14 +127,11 @@ app.post('/usersearch.json', function(request, response){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
 		collection.find({username: user}).toArray(function(error, results){
-//			'/usersearch.html'.getElementById("list").innerHTML = results;
 			response.send(results);
 		});
 	});
-	
-
-	//show those scores
 });
+
 
 
 var port = process.env.PORT || 5000;
