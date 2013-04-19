@@ -59,7 +59,7 @@ app.post('/submit.json', function(request, response){
 		collection.insert(data);
 	});
 
-	
+	console.log("Successfully saved!");
 	response.sendfile(__dirname + '/submit.html');
 
 });
@@ -85,12 +85,12 @@ app.post('/highscores.json', function(request, response){
 	mongo.Db.connect(mongoUri, {safe: true}, function(error, db){
 		if(error) throw error;
 		var collection = db.collection("scorecenter");
-//		collection.find().sort({score:-1}).limit(10);
 //		collection.find().sort({game_title: game_title}).limit(10));
 		collection.find({game_title: game_title}).toArray(function(error, results){
 //			array.sort(results);
-			results = results.sort({score:-1});
+//			results = results.sort({score:-1});
 //			var str = JSON.parse(results);
+			console.log(results);
 			response.send(results);
 		});
 	});
