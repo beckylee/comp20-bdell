@@ -7,7 +7,7 @@ Beckylee Dell
 
  Basically, everything just shows up as a JSON api.
 
- JSON.parse isn't working, it keeps crashing my program.  Also, I can't really
+ JSON.parse isn't working, it keeps crashing my program.  Also, I couldn't really
     access the css files, so it's ugly.
 
 2. Phil Tang has been explaining how a lot of things work.  
