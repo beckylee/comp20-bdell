@@ -11,5 +11,6 @@ Beckylee Dell
     access the css files, so it's ugly.
 
 2. Phil Tang has been explaining how a lot of things work.  
+   Also, Tim Alander is a champ.
 
 3. 16 hours and I lost track.

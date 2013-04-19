@@ -14,3 +14,5 @@ Beckylee Dell
    Also, Tim Alander is a champ.
 
 3. 16 hours and I lost track.
+
+Also, I'm sorry it's not pretty/complete.  I had a lot of trouble with this.
