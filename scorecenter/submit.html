@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Submit Data</title>
+</head>
+
+<body>
+<form method="post" action="/submit.json">
+	<p><h2>Submit your information!</h2><br>
+  <input type="hidden" name="_method" value="put" />
+  <p>Title of Game:
+  <input type="text" name="game_title" />
+  <p>Username:
+  <input type="text" name="username" />
+  <p>Score:
+  <input type="text" name="score" />
+  <p>
+  <input type="submit" value="Submit" />    
+</form>
+</body>
+
+
+</html>
