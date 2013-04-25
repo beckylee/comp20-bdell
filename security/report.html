@@ -29,12 +29,18 @@ third party programs, such as Burp and tktk.
 
 <hr/>
 <p><h3>Abstract of Findings</h3>
-<p>(1)Limited amount of space/data available (Burp), but no restriction on how much data can be
-inputted into the /new page.
-<p>(2)anyone can delete all of the information using the /delete_all url.
-<p>(3)
+<p>  In all, the ScoreCenter has a few vulnerabilities, as well as some bugs that can be easily fixed.
+
+<p> Vulnerabilities: ScoreCenter's main vulnerability is that the application has been left
+too open.  It is simple to cause some serious damage to the application; luckily, it is also simple
+to remedy these issues. These issues include limited data space and unlimited data submission, 
+a delete_all feature, and CORS universal allow.
+
+<p>  The bugs, too can be easily remedied.  I have included details about each of these
+vulnerabilities and bugs below.
 <hr/>
 <p><h3>Issues Found</h3>
+
 <p><h4>1. Not Enough Space & No Submit Size Limit </h4>
 <ul>
 <li> <b>Location: </b> /new
@@ -45,6 +51,7 @@ As well, there is no limit to how much input a user can submit for "username" or
 The site could be incapacitated by receiving too much data.
 <li> <b>Resolution: </b> I don't actually know?
 </ul>
+
 <p><h4>2. Anyone Can Delete the Database</h4>
 <ul>
 <li> <b>Location: </b> /delete_all
@@ -56,17 +63,53 @@ information is deleted.
 and holds great power.  Instead, rely on manual deletion or visit the Database on Mongohq
 to clear it.
 </ul>
-<p>3.
+
+<img class="delete" src="deletion.png" alt="deleted items"/>
+
+
+<p><h4>3. Usersearch Doesn't Work</h4>
 <ul>
-<li> <b>Location: </b>
-<li> <b>Severity: </b>
-<li> <b>Description: </b>
-<li> <b>Resolution: </b>
+<li> <b>Location: </b> /usersearch
+<li> <b>Severity: </b> Low: This isn't actually a vulnerability, but rather it's a bug.
+<li> <b>Description: </b>  Regardless of what the user inputs as the username, the page
+shows no results.
+<li> <b>Resolution: </b>  There is an error in the code.  In the app.get function for /search_results,
+line 102, should search for 'username':req.query.username, instead of 'id':req.query.username.
+</ul>
+
+<p><h4>4. Cannot Search by Game Title</h4>
+<ul>
+<li> <b>Location: </b> /search_results
+<li> <b>Severity: </b> Low: It's a bug, not a vulnerability.
+<li> <b>Description: </b>  Page doesn't allow for the user to input a game title to search.
+It instead reads a lot like the homepage (/), and simply shows usernames and game titles in
+the order of their submission.
+<li> <b>Resolution: </b>  Create a form for that allows for user input, much like what the 
+/usersearch page has.
+</ul>
+
+<p><h4>5. CORS Uses Universal Allow</h4>
+<ul>
+<li> <b>Location: </b> /
+<li> <b>Severity: </b> High: Anyone can access the response.
+<li> <b>Description: </b>  By having app.all contain the wildcard for all of the CORS headers
+(*), the application is open to a few different kinds of attacks.  For one, if it connects to 
+a malicious site, that site can make COR and steal the ScoreCenter's response.  As well, this
+could allow outside users to access parts of the application in the same way as an internal
+employee or the owner might.
+<li> <b>Resolution: </b>  Don't use the wildcard.  Include specific rules and websites that are
+acceptable, or exclude particular ones.
 </ul>
 
 <hr/>
 <p><h3>Conclusion</h3>
-<p>
+<p> There are a number of improvements that can be made on this ScoreCenter application.  As
+it currently stands, there are many ways in which malicious users can disrupt or abuse the
+application, or innocent users may be confused or dissatisfied. 
+<p> I recommend that the owner immediately addresses the issues enumerated above, and then hire 
+someone who is actually skilled in testing security to check for additional vulnerabilities
+and weaknesses.
+</br></br>
 
 </body>
 
