@@ -29,12 +29,40 @@ third party programs, such as Burp and tktk.
 
 <hr/>
 <p><h3>Abstract of Findings</h3>
-
+<p>(1)Limited amount of space/data available (Burp), but no restriction on how much data can be
+inputted into the /new page.
+<p>(2)anyone can delete all of the information using the /delete_all url.
+<p>(3)
 <hr/>
 <p><h3>Issues Found</h3>
-<p>1.
-<p>2.
+<p><h4>1. Not Enough Space & No Submit Size Limit </h4>
+<ul>
+<li> <b>Location: </b> /new
+<li> <b>Severity: </b> Medium: A malicious user could incapacitate the site if they wanted to,
+but even if the application was used properly, eventually it would run out of space.
+<li> <b>Description: </b>  There is only 129 MB of space available on the ScoreCenter Database.
+As well, there is no limit to how much input a user can submit for "username" or "game title."
+The site could be incapacitated by receiving too much data.
+<li> <b>Resolution: </b> I don't actually know?
+</ul>
+<p><h4>2. Anyone Can Delete the Database</h4>
+<ul>
+<li> <b>Location: </b> /delete_all
+<li> <b>Severity: </b> High: Anyone, whether on purpose or by accident, can completely wipe out 
+all of the database's information.
+<li> <b>Description: </b> By simply visiting the /delete_all page, all of the ScoreCenter's
+information is deleted.  
+<li> <b>Resolution: </b>  Get rid of the /delete_all page.  It is openly accessible to anyone,
+and holds great power.  Instead, rely on manual deletion or visit the Database on Mongohq
+to clear it.
+</ul>
 <p>3.
+<ul>
+<li> <b>Location: </b>
+<li> <b>Severity: </b>
+<li> <b>Description: </b>
+<li> <b>Resolution: </b>
+</ul>
 
 <hr/>
 <p><h3>Conclusion</h3>
