@@ -47,9 +47,12 @@ vulnerabilities and bugs below.
 <li> <b>Severity: </b> Medium: A malicious user could incapacitate the site if they wanted to,
 but even if the application was used properly, eventually it would run out of space.
 <li> <b>Description: </b>  There is only 129 MB of space available on the ScoreCenter Database.
-As well, there is no limit to how much input a user can submit for "username" or "game title."
-The site could be incapacitated by receiving too much data.
-<li> <b>Resolution: </b> I don't actually know?
+As well, there is no limit to how much input a user can submit for "Username," "Game Title," or
+"Highscore." The site could be incapacitated by receiving too much data.  Although I did not 
+test how much data the I could insert as a user before it crashed, it is reasonable to assume
+that it would, in fact, crash once it hit its limit.
+<li> <b>Resolution: </b> Include a limit on how many characters users can enter in the 
+Username, Game Title, and Highscore text boxes to prevent abuse.
 </ul>
 
 <p><h4>2. Anyone Can Delete the Database</h4>
@@ -64,7 +67,7 @@ and holds great power.  Instead, rely on manual deletion or visit the Database o
 to clear it.
 </ul>
 
-<img class="delete" src="deletion.png" alt="deleted items"/>
+<img class="picture" src="deletion.png" alt="deleted items"/>
 
 
 <p><h4>3. Usersearch Doesn't Work</h4>
@@ -101,6 +104,7 @@ employee or the owner might.
 acceptable, or exclude particular ones.
 </ul>
 
+<img class="picture" src="CORS.png" alt="CORS code"/>
 <hr/>
 <p><h3>Conclusion</h3>
 <p> There are a number of improvements that can be made on this ScoreCenter application.  As
