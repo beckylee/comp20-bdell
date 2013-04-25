@@ -1,12 +1,10 @@
 Beckylee Dell
-Lab 5
+Lab 11
 
-1.  The minutes on the timestamp don't include a 0 (12:05 is 12:5).  The new 
-statuses aren't in list form like the rest of the old statuses are, but 
-I decided to copy the format on the lab directions page.
+1.  Web Programming (Comp 20) at Tufts University, Spring 2013.
 
-2.  I got some help at the end of the assignment from Phil Tang, who graduated
-last year.  I was having trouble inserting a new line between the statuses
-and he helped me figure out what I was doing wrong.
+2.  Favorite Project:  Frogger (assignment 4), because frogger is a fun game.
 
-3.  Approximately 2 hours.
+3.  What I'm most proud of:  Frogger, again.  By far the coolest thing I got to make.
+
+4.  How much have I learned:  I learned a lot.  I came into this class knowing absolutely NO web programming, and only a little bit of basic C++.  
